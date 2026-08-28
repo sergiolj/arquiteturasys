@@ -1,15 +1,9 @@
 package arqsys.domain.model;
 
-import java.util.logging.Formatter;
-import java.util.logging.Handler;
-
+import java.io.IOException;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Level;
-import java.util.logging.LogRecord;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
+import java.util.logging.*;
 
 enum Format {
 	SIMPLE, COMPLETE;
@@ -18,43 +12,70 @@ enum Format {
 public class MyLogger {
 	private Logger logger;
 	private Formatter formatter;
-	private Handler handler;
+
+	private String loggerClassName;
 	private static final DateTimeFormatter DATA_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss")
 			.withZone(ZoneId.systemDefault());
 	
 	
 	public MyLogger(String loggerClassName) {
 		super();
+		this.loggerClassName = loggerClassName;
 		this.logger = Logger.getLogger(loggerClassName);
-		this.handler = new ConsoleHandler();
-		this.formatter = new SimpleFormatter();
+		ConsoleHandler consoleHandler = new ConsoleHandler();
+		this.formatter = customFormatter();
 		
-		handler.setFormatter(formatter);
-		logger.addHandler(handler);
+		consoleHandler.setFormatter(formatter);
+		logger.addHandler(consoleHandler);
 		logger.setUseParentHandlers(false);
 		logger.setLevel(Level.ALL);
 	}
 	
-	public void setSimpleOutput() {
-		this.handler.setFormatter(simpleFormatter());
+	
+	public void addOutputFileHandler() {
+		Handler fileHandler;
+		try {
+			fileHandler = new FileHandler(loggerClassName + ".log", true);
+			fileHandler.setLevel(Level.WARNING);
+			fileHandler.setFormatter(formatter);
+			logger.addHandler(fileHandler);
+
+		}catch (IOException e) {
+			logger.warning("Erro ao criar log " + e.getMessage());
+		}
 		
 	}
-	
-	private Formatter simpleFormatter() {
+	private Formatter customFormatter() {
 		return new Formatter() {
 		@Override
-		public String format(LogRecord record) {
-			String dataFormatadaString = DATA_TIME_FORMATTER.format(record.getInstant());
+		public String format(LogRecord logRecord) {
+			String dataFormatadaString = DATA_TIME_FORMATTER.format(logRecord.getInstant());
 			
-			return String.format("[%s] %s: %s%n",
+			return String.format("[%s] [%s] %s: %s%n",
 					dataFormatadaString,
-					record.getLevel(),
-					record.getMessage());
+					logRecord.getLoggerName(),
+					logRecord.getLevel(),
+					logRecord.getMessage());
 			}
 		};
 	}
 	
-	public Logger getLogger() {
-		return this.logger;
+	/**
+	 * PADRÃO DE PROJETO FACADE para evitar expor o looger interno da classe e manter as funcionalidades do logger
+	 * @param message
+	 */
+	public void info(String message) {
+		this.logger.info(message);
 	}
+	
+	public void warning(String message) {
+		this.logger.warning(message);
+	}
+	
+	public void severe(String message) {
+		this.logger.severe(message);
+	}
+	
 }
+
+
