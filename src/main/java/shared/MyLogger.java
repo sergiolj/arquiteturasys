@@ -1,4 +1,4 @@
-package arqsys.domain.model;
+package shared;
 
 import java.io.IOException;
 import java.time.ZoneId;

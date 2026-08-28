@@ -7,14 +7,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import arqsys.domain.model.MyLogger;
-import arqsys.domain.model.ProcessSale;
 import arqsys.domain.model.Sale;
 import arqsys.domain.model.SaleItem;
 
 import arqsys.domain.rules.ProductRule;
 import arqsys.domain.rules.ServiceRule;
 import arqsys.domain.rules.TaxRules;
+import shared.MyLogger;
 
 public class CalculateTaxService implements ProcessSale{
 	private MyLogger logger = new MyLogger(this.getClass().getName());

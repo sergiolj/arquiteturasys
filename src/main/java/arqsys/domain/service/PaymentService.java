@@ -1,8 +1,7 @@
 package arqsys.domain.service;
 
-import arqsys.domain.model.MyLogger;
-import arqsys.domain.model.ProcessSale;
 import arqsys.domain.model.Sale;
+import shared.MyLogger;
 
 public class PaymentService implements ProcessSale{
 	private MyLogger logger = new MyLogger(this.getClass().getName());

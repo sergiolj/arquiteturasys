@@ -3,7 +3,6 @@ package arqsys.domain.service;
 import java.util.List;
 import java.util.Stack;
 
-import arqsys.domain.model.ProcessSale;
 import arqsys.domain.model.Sale;
 
 public class SaleProcessComposite implements ProcessSale {
