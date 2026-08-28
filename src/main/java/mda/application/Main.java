@@ -1,10 +1,9 @@
-package arqsys.application;
+package mda.application;
 
-import arqsys.domain.model.Sale;
-import arqsys.domain.model.SaleItem;
-import arqsys.domain.model.SaleType;
-
-import arqsys.domain.service.SaleProcessComposite;
+import mda.domain.model.Sale;
+import mda.domain.model.SaleItem;
+import mda.domain.model.SaleType;
+import mda.domain.service.SaleProcessComposite;
 
 public class Main {
 	public static void main(String[] args) {

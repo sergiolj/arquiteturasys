@@ -1,6 +1,6 @@
-package arqsys.domain.rules;
+package mda.domain.rules;
 
-import arqsys.domain.model.SaleItem;
+import mda.domain.model.SaleItem;
 
 public interface TaxRules {
 	boolean apliesTo(SaleItem saleItem);

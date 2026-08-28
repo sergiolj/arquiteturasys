@@ -1,9 +1,9 @@
-package arqsys.domain.service;
+package mda.domain.service;
 
 import java.util.List;
 import java.util.Stack;
 
-import arqsys.domain.model.Sale;
+import mda.domain.model.Sale;
 
 public class SaleProcessComposite implements ProcessSale {
 	private final Sale sale;

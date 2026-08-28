@@ -1,7 +1,7 @@
-package arqsys.domain.rules;
+package mda.domain.rules;
 
-import arqsys.domain.model.SaleItem;
-import arqsys.domain.model.SaleType;
+import mda.domain.model.SaleItem;
+import mda.domain.model.SaleType;
 
 public class ServiceRule implements TaxRules{
 

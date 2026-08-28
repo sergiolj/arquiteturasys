@@ -1,4 +1,4 @@
-package arqsys.domain.model;
+package mda.domain.model;
 
 import lombok.Data;
 

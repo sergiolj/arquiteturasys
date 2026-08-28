@@ -1,4 +1,4 @@
-package arqsys.domain.service;
+package mda.domain.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -7,12 +7,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import arqsys.domain.model.Sale;
-import arqsys.domain.model.SaleItem;
-
-import arqsys.domain.rules.ProductRule;
-import arqsys.domain.rules.ServiceRule;
-import arqsys.domain.rules.TaxRules;
+import mda.domain.model.Sale;
+import mda.domain.model.SaleItem;
+import mda.domain.rules.ProductRule;
+import mda.domain.rules.ServiceRule;
+import mda.domain.rules.TaxRules;
 import shared.MyLogger;
 
 public class CalculateTaxService implements ProcessSale{

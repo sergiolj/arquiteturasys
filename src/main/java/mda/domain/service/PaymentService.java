@@ -1,6 +1,6 @@
-package arqsys.domain.service;
+package mda.domain.service;
 
-import arqsys.domain.model.Sale;
+import mda.domain.model.Sale;
 import shared.MyLogger;
 
 public class PaymentService implements ProcessSale{
