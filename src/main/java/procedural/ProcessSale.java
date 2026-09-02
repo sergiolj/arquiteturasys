@@ -134,7 +134,7 @@ public class ProcessSale {
 		}
 	
 	public static void registerLog(ArrayList<SaleItemStruct> list, double salesTotal, double salesTax, double salesReceipt) {
-		try (FileWriter logFile = new FileWriter("syslog.log", true);
+		try (FileWriter logFile = new FileWriter("procedural.log.log", true);
 			PrintWriter logRecord = new PrintWriter(logFile)){
 			
 			logRecord.print("DADOS DA VENDA\n");
