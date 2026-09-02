@@ -1,5 +1,6 @@
 package mda.domain.service;
 
+import mda.application.ProcessSale;
 import mda.domain.model.Sale;
 import shared.MyLogger;
 

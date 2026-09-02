@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import mda.application.ProcessSale;
 import mda.domain.model.Sale;
 import mda.domain.model.SaleItem;
 import mda.domain.rules.ProductRule;

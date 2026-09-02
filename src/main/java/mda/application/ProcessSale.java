@@ -1,4 +1,4 @@
-package mda.domain.service;
+package mda.application;
 
 import mda.domain.model.Sale;
 
