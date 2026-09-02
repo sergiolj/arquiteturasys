@@ -134,14 +134,13 @@ public class ProcessSale {
 		}
 	
 	public static void registerLog(ArrayList<SaleItemStruct> list, double salesTotal, double salesTax, double salesReceipt) {
-		try {
-			FileWriter logFile = new FileWriter("syslog.log", true);
-			PrintWriter logRecord = new PrintWriter(logFile);
+		try (FileWriter logFile = new FileWriter("syslog.log", true);
+			PrintWriter logRecord = new PrintWriter(logFile)){
+			
 			logRecord.print("DADOS DA VENDA\n");
 			logRecord.print(formatDate(LocalDateTime.now()) + "\n");
 			logRecord.print(listProducts(list));
 			logRecord.print("Valor dos produtos da NF R$: " + salesTotal + " + impostos R$: "+salesTax+" Total a pagar R$: "+salesReceipt +"\n");
-			logFile.close();
 
 		}catch (IOException e) {
 			System.out.println("Erro ao tentar gravar log");
