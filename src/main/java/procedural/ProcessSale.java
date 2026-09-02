@@ -29,7 +29,7 @@ public class ProcessSale {
 		double salesTotal = 0;
 		double salesTax = 0;
 
-		double invokeTotal = 0;
+		double salesReceipt = 0;
 
 		//1-LEITURA DE DADOS DA VENDA
 
@@ -89,8 +89,8 @@ public class ProcessSale {
 								salesTax += 0; //Item tax exempt
 							}
 						}
-						invokeTotal = salesTotal + salesTax;
-						process(saleList, salesTotal, salesTax, invokeTotal);
+						salesReceipt = salesTotal + salesTax;
+						process(saleList, salesTotal, salesTax, salesReceipt);
 						saleList.clear();
 					}else {
 						System.out.println("Processamento da venda cancelado");
@@ -110,12 +110,12 @@ public class ProcessSale {
 		sc.close();
 	}
 		
-	public static void process(ArrayList<SaleItemStruct> list, double salesTotal, double salesTax, double invokeTotal) {
+	public static void process(ArrayList<SaleItemStruct> list, double salesTotal, double salesTax, double salesReceipt) {
 		System.out.println("Enviando NF para impressão...");
 		listProducts(list);
-		System.out.println("Valor dos produtos da NF R$: " + salesTotal + " + impostos R$: "+salesTax+" Total a pagar R$: "+invokeTotal);
+		System.out.println("Valor dos produtos da NF R$: " + salesTotal + " + impostos R$: "+salesTax+" Total a pagar R$: "+salesReceipt);
 		System.out.println("Registrando dados da venda em logfile...");
-		registerLog(list, salesTotal, salesTax, invokeTotal);
+		registerLog(list, salesTotal, salesTax, salesReceipt);
 		System.out.println("\nProcesso de venda finalizado.");
 	}
 	
@@ -133,14 +133,14 @@ public class ProcessSale {
 		return formatter.format(dateTime);
 		}
 	
-	public static void registerLog(ArrayList<SaleItemStruct> list, double salesTotal, double salesTax, double invokeTotal) {
+	public static void registerLog(ArrayList<SaleItemStruct> list, double salesTotal, double salesTax, double salesReceipt) {
 		try {
 			FileWriter logFile = new FileWriter("syslog.log", true);
 			PrintWriter logRecord = new PrintWriter(logFile);
 			logRecord.print("DADOS DA VENDA\n");
 			logRecord.print(formatDate(LocalDateTime.now()) + "\n");
 			logRecord.print(listProducts(list));
-			logRecord.print("Valor dos produtos da NF R$: " + salesTotal + " + impostos R$: "+salesTax+" Total a pagar R$: "+invokeTotal +"\n");
+			logRecord.print("Valor dos produtos da NF R$: " + salesTotal + " + impostos R$: "+salesTax+" Total a pagar R$: "+salesReceipt +"\n");
 			logFile.close();
 
 		}catch (IOException e) {
